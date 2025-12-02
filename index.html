@@ -1,141 +1,1049 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy</title>
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
-            text-align: center;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-            color: white;
-            padding: 60px 30px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 2.7rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-        
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .content {
-            padding: 50px 30px;
-        }
-        
-        .app-section {
-            margin-bottom: 40px;
-        }
-        
-        .app-section:last-child {
-            margin-bottom: 0;
-        }
-        
-        .app-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #4f46e5;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e5e7eb;
-        }
-        
-        .button {
-            display: inline-block;
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-            color: white;
-            padding: 18px 40px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
-        }
-        
-        .button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(79, 70, 229, 0.4);
-        }
-        
-        .button:active {
-            transform: translateY(0);
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                margin: 10px;
-                border-radius: 15px;
-            }
-            
-            .header {
-                padding: 40px 20px;
-            }
-            
-            .header h1 {
-                font-size: 2.5rem;
-            }
-            
-            .content {
-                padding: 40px 20px;
-            }
-            
-            .button {
-                padding: 15px 30px;
-                font-size: 1rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mümin AI – Müminler İçin Yapay Zeka Desteği</title>
+  <meta
+    name="description"
+    content="Mümin AI, günlük hayatınızda ve İslami konularda size Kur'an, sahih hadisler ve fıkıh kaynaklarıyla destek olan yapay zeka asistanıdır."
+  />
+  <link rel="icon" type="image/png" href="/muminai-website/favicon.png" />
+  <style>
+    :root {
+      --bg: #0d4f3d;
+      --bg-soft: #0a3d2e;
+      --card: #115d47;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.15);
+      --accent-strong: #16a34a;
+      --accent-light: #86efac;
+      --text: #ffffff;
+      --text-soft: #c6f6d5;
+      --border-subtle: rgba(134, 239, 172, 0.3);
+      --shadow-soft: 0 24px 80px rgba(13, 79, 61, 0.6);
+      --cream: #fef9e7;
+      --cream-soft: #fef5d4;
+      --radius-lg: 24px;
+      --radius-full: 999px;
+      --transition-fast: 180ms ease-out;
+      --transition-med: 220ms ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #86efac 0%, #22c55e 25%, #16a34a 50%, #0d4f3d 75%, #0a3d2e 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1120px;
+      margin: auto;
+    }
+
+    .shell {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 32px;
+      border: 1px solid rgba(13, 79, 61, 0.1);
+      box-shadow: 0 20px 60px rgba(13, 79, 61, 0.25);
+      padding: 32px 32px 36px;
+      color: #0a3d2e;
+    }
+
+    .shell-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 17px;
+      color: #047857;
+      box-shadow: 0 14px 32px rgba(13, 79, 61, 0.4);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .brand-name {
+      font-size: 17px;
+      font-weight: 650;
+      letter-spacing: 0.02em;
+      color: #047857;
+    }
+
+    .brand-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #059669;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      background: rgba(16, 185, 129, 0.1);
+      box-shadow: 0 2px 8px rgba(13, 79, 61, 0.1);
+      font-size: 11px;
+      color: #047857;
+      white-space: nowrap;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+    }
+
+    .pill-badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #10b981;
+      border: 1px solid #059669;
+      color: #ffffff;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* Layout */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    /* Left */
+    .headline {
+      font-size: clamp(32px, 5.5vw, 44px);
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      margin-bottom: 20px;
+      color: #047857;
+    }
+
+    .headline span.accent {
+      background: linear-gradient(130deg, #047857, #059669, #10b981);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .sub {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #0a3d2e;
+      max-width: 500px;
+      margin-bottom: 24px;
+    }
+
+    .highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .chip {
+      font-size: 12px;
+      padding: 8px 12px;
+      border-radius: var(--radius-full);
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      color: #047857;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10b981;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 20px;
+      margin-top: 0;
+    }
+
+    .store-button {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 32px;
+      border-radius: 18px;
+      border: 2px solid #10b981;
+      background: #ffffff;
+      color: #047857;
+      text-decoration: none;
+      transition: all var(--transition-med);
+      box-shadow: 0 4px 16px rgba(13, 79, 61, 0.15), 0 0 0 0 rgba(16, 185, 129, 0);
+      min-width: 220px;
+      flex: 1;
+      justify-content: flex-start;
+    }
+
+    .store-button:hover {
+      transform: translateY(-2px);
+      border-color: #059669;
+      box-shadow: 0 8px 24px rgba(13, 79, 61, 0.25), 0 0 0 3px rgba(16, 185, 129, 0.15);
+      background: #ffffff;
+    }
+
+    .store-button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(13, 79, 61, 0.2);
+    }
+
+    .store-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #ffffff;
+      font-size: 24px;
+      font-weight: 700;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    }
+
+    .store-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+      text-align: left;
+    }
+
+    .store-label {
+      font-size: 11px;
+      color: #059669;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 2px;
+    }
+
+    .store-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: #047857;
+    }
+
+    .secondary-note {
+      font-size: 12px;
+      color: #059669;
+      margin-bottom: 16px;
+    }
+
+    .rating-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 0;
+      font-size: 12px;
+      color: #0a3d2e;
+      align-items: center;
+    }
+
+    .stars {
+      display: inline-flex;
+      gap: 2px;
+      color: #facc15;
+    }
+
+    .divider-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: #059669;
+    }
+
+    /* Right - mockup */
+    .device-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .halo {
+      position: absolute;
+      inset: 18% 4% 6%;
+      filter: blur(40px);
+      opacity: 0.3;
+      background:
+        radial-gradient(circle at 50% 0, rgba(16, 185, 129, 0.2), transparent 60%),
+        radial-gradient(circle at 10% 50%, rgba(16, 185, 129, 0.15), transparent 60%);
+      mix-blend-mode: normal;
+      pointer-events: none;
+    }
+
+    .phone {
+      position: relative;
+      width: min(320px, 85vw);
+      border-radius: 38px;
+      padding: 10px;
+      background: linear-gradient(145deg, #0a3d2e, #0d4f3d);
+      box-shadow:
+        0 32px 70px rgba(13, 79, 61, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        0 0 0 10px rgba(13, 79, 61, 0.6);
+    }
+
+    .phone-inner {
+      border-radius: 30px;
+      overflow: hidden;
+      background: var(--cream);
+      border: 1px solid rgba(13, 79, 61, 0.3);
+      position: relative;
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 105px;
+      height: 22px;
+      border-radius: 999px;
+      background: var(--cream);
+      box-shadow: 0 0 0 1px rgba(13, 79, 61, 0.2);
+      z-index: 3;
+    }
+
+    .screen {
+      padding: 40px 20px 24px;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: var(--cream);
+      min-height: 480px;
+    }
+
+    .screen-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .screen-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #047857;
+    }
+
+    .screen-tag {
+      font-size: 10px;
+      color: #059669;
+    }
+
+    .screen-chip {
+      font-size: 9px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #047857;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .bubble {
+      padding: 8px 10px;
+      border-radius: 14px;
+      font-size: 11px;
+      line-height: 1.4;
+      border: 1px solid rgba(13, 79, 61, 0.2);
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 10px 28px rgba(13, 79, 61, 0.15);
+      color: #0a3d2e;
+    }
+
+    .bubble.user {
+      margin-left: auto;
+      border-top-right-radius: 2px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #ffffff;
+      border-color: rgba(5, 150, 105, 0.5);
+    }
+
+    .bubble.ai {
+      margin-right: auto;
+      border-top-left-radius: 2px;
+    }
+
+    .bubble small {
+      display: block;
+      font-size: 9px;
+      margin-top: 5px;
+      color: #059669;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(13, 79, 61, 0.3),
+        transparent
+      );
+      margin: 4px 0 2px;
+    }
+
+    .mini-row {
+      display: flex;
+      gap: 6px;
+      font-size: 9px;
+      color: #047857;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mini-pill {
+      padding: 4px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      background: rgba(16, 185, 129, 0.1);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .mini-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #10b981;
+    }
+
+    .input-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(13, 79, 61, 0.25);
+      background: rgba(255, 255, 255, 0.9);
+      margin-top: 2px;
+    }
+
+    .input-row span {
+      font-size: 10px;
+      color: #047857;
+    }
+
+    .input-mic {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 10px;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(13, 79, 61, 0.15);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: #059669;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer a {
+      color: #059669;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .footer a:hover {
+      color: #047857;
+    }
+
+    /* Responsive */
+    @media (max-width: 840px) {
+      body {
+        padding: 12px 8px;
+      }
+
+      .shell {
+        border-radius: 20px;
+        padding: 20px 16px 24px;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+      }
+
+      .device-wrap {
+        order: -1;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .phone {
+        width: 320px;
+      }
+
+      .halo {
+        display: none;
+      }
+
+      .top-bar {
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .brand {
+        gap: 8px;
+      }
+
+      .brand img {
+        width: 32px !important;
+        height: 32px !important;
+      }
+
+      .brand-name {
+        font-size: 15px;
+      }
+
+      .brand-tag {
+        font-size: 10px;
+      }
+
+      .pill {
+        font-size: 10px;
+        padding: 6px 10px;
+      }
+
+      .headline {
+        font-size: 26px;
+        margin-bottom: 14px;
+        line-height: 1.2;
+      }
+
+      .sub {
+        font-size: 14px;
+        margin-bottom: 18px;
+        line-height: 1.5;
+      }
+
+      .highlights {
+        margin-bottom: 20px;
+        gap: 8px;
+      }
+
+      .chip {
+        font-size: 11px;
+        padding: 6px 10px;
+      }
+
+      .cta-row {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .store-button {
+        width: 100%;
+        min-width: auto;
+        padding: 16px 20px;
+        gap: 12px;
+      }
+
+      .store-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
+      }
+
+      .store-name {
+        font-size: 17px;
+      }
+
+      .store-label {
+        font-size: 10px;
+      }
+
+      .secondary-note {
+        font-size: 11px;
+        margin-bottom: 12px;
+      }
+
+      .rating-row {
+        font-size: 11px;
+        gap: 8px;
+      }
+
+      .footer {
+        margin-top: 28px;
+        padding-top: 16px;
+        font-size: 10px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      body {
+        padding: 8px 6px;
+      }
+
+      .shell {
+        padding: 18px 14px 20px;
+        border-radius: 16px;
+      }
+
+      .hero {
+        margin-top: 50px;
+        gap: 20px;
+      }
+
+      
+
+      .phone {
+        width:  300px;
+        padding: 10px;
+
+      }
+
+      .phone-inner {
+        border-radius: 24px;
+      }
+
+      .screen {
+        padding: 32px 14px 18px;
+        min-height: 400px;
+        gap: 10px;
+      }
+
+      .screen-title {
+        font-size: 13px;
+      }
+
+      .screen-tag {
+        font-size: 9px;
+      }
+
+      .screen img {
+        width: 32px !important;
+        height: 32px !important;
+      }
+
+      .bubble {
+        font-size: 10px;
+        padding: 6px 8px;
+      }
+
+      .top-bar {
+        margin-bottom: 16px;
+        gap: 12px;
+      }
+
+      .brand {
+        gap: 6px;
+      }
+
+      .brand img {
+        width: 28px !important;
+        height: 28px !important;
+      }
+
+      .brand-name {
+        font-size: 14px;
+      }
+
+      .brand-tag {
+        font-size: 9px;
+      }
+
+      .pill-text {
+        font-size: 8px;
+      }
+
+      .pill {
+        font-size: 9px;
+        padding: 5px 8px;
+        gap: 6px;
+        width: 150px;
+      }
+
+      .pill-badge {
+        padding: 2px 4px;
+        font-size: 4px;
+      }
+
+      .headline {
+        font-size: 22px;
+        margin-bottom: 12px;
+        line-height: 1.15;
+      }
+
+      .sub {
+        font-size: 13px;
+        margin-bottom: 16px;
+        line-height: 1.5;
+      }
+
+      .highlights {
+        margin-bottom: 18px;
+        gap: 6px;
+      }
+
+      .chip {
+        font-size: 10px;
+        padding: 5px 8px;
+        gap: 5px;
+      }
+
+      .chip-dot {
+        width: 5px;
+        height: 5px;
+      }
+
+      .cta-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+
+      .store-button {
+        justify-content: flex-start;
+        padding: 14px 18px;
+        min-width: auto;
+        width: 100%;
+        gap: 12px;
+        border-radius: 14px;
+      }
+
+      .store-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        border-radius: 10px;
+      }
+
+      .store-name {
+        font-size: 16px;
+      }
+
+      .store-label {
+        font-size: 9px;
+        letter-spacing: 0.6px;
+      }
+
+      .secondary-note {
+        font-size: 10px;
+        margin-bottom: 10px;
+      }
+
+      .rating-row {
+        font-size: 10px;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .stars {
+        font-size: 12px;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        margin-top: 24px;
+        padding-top: 14px;
+        font-size: 9px;
+      }
+
+      .footer-links {
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 360px) {
+      body {
+        padding: 6px 4px;
+      }
+
+      .shell {
+        padding: 16px 12px 18px;
+      }
+
+      .headline {
+        font-size: 20px;
+      }
+
+      .sub {
+        font-size: 12px;
+      }
+
+      .phone {
+        width: 50vw
+      }
+
+      .store-button {
+        padding: 12px 16px;
+      }
+
+      .store-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+      }
+
+      .store-name {
+        font-size: 15px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div style="width: 500px" class="header">
-            <h1>Mümin AI</h1>
-            <p>Hayata İslami Değerlerle Bak</p>
-        </div>
-        
-        <div class="content">
-            <div class="app-section">
-                <div style="display: flex; flex-direction: column; gap: 20px;">
-                    <a href="privacy-policy.html" class="button">Gizlilik Politikası</a>
-                    <a href="support.html" class="button">Destek</a>
-                    <a href="user-agreement.html" class="button">Kullanıcı Sözleşmesi</a>
-                </div>
+  <main class="page">
+    <section class="shell" aria-labelledby="hero-title">
+      <div class="shell-inner">
+        <header class="top-bar">
+          <div class="brand">
+            <img src="/icon.png" style="width: 40px; height: 40px;">
+            <div class="brand-text">
+              <div class="brand-name">Mümin AI</div>
+              <div class="brand-tag">İslami Yapay Zeka Asistanı</div>
             </div>
+          </div>
+          <div class="pill">
+            <span class="pill-dot"></span>
+            <span class="pill-text">iOS &amp; Android'de yayında</span>
+            <span class="pill-badge">Yeni</span>
+          </div>
+        </header>
+
+        <div class="hero">
+          <!-- Right: Phone Mockup -->
+          <div class="device-wrap" aria-hidden="true">
+            <div class="halo"></div>
+            <div class="phone">
+              <div class="phone-inner">
+                <div class="phone-notch"></div>
+                <div class="screen">
+                  <div class="screen-head">
+                    <div>
+                      <div class="screen-title">Mümin AI</div>
+                      <div class="screen-tag">Mümine Sor</div>
+                    </div>
+                    <img src="/icon.png" style="width: 40px; height: 40px;">
+                  </div>
+
+                  <div class="bubble user">
+                    Bugün yaşadığım bir olayı İslami açıdan değerlendirir misin?
+                  </div>
+
+                  <div class="bubble ai">
+                    Elbette. Önce olayı sakince anlatalım, sonra Kur'an, sahih hadisler ve
+                    fıkıh ışığında birlikte değerlendirelim. Niyetini, kalbini ve kul
+                    hakkını merkeze alarak gidelim inşallah.
+                    <small>🌙 Her zaman kaynaklarımla cevaplayacağım.</small>
+                  </div>
+
+                  <div class="bubble user">
+                    Namaz vakitleri ne zaman?
+                  </div>
+
+                  <div class="bubble ai">
+                    Bugün için namaz vakitleri:
+                    <br />🌅 Sabah: 06:15
+                    <br />☀️ Öğle: 12:45
+                    <br />🌆 İkindi: 15:20
+                    <br />🌇 Akşam: 17:50
+                    <br />🌙 Yatsı: 19:15
+                  </div>
+
+                  <div class="divider"></div>
+
+                  <div class="mini-row">
+                    <div class="mini-pill">
+                      <span class="mini-dot"></span>
+                      <span>Günlük güncellenen namaz vakitleri</span>
+                    </div>
+                    <div class="mini-pill">
+                      <span class="mini-dot"></span>
+                      <span>Kıble yönü pusulası</span>
+                    </div>
+                  </div>
+
+                  <div class="bubble ai">
+                    📖 Bugünün okuması: "İman edenler ve salih ameller işleyenler için
+                    cennetler vardır." (Kehf Suresi, 107. ayet)
+                  </div>
+
+                  <div class="input-row">
+                    <span>İstersen yaz, istersen konuş...</span>
+                    <span class="input-mic">🎙</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Left: Text + CTAs -->
+          <div>
+            <h1 id="hero-title" class="headline">
+              <span class="accent">“Müminler İçin</span><br />
+              <span class="accent">Yapay Zeka Desteği”</span>
+            </h1>
+            <p class="sub">
+                Mümin AI, ister günlük sorularınızı, ister İslami konulardaki sorularınızı sorabileceğiniz eğitimli bir yapay zeka asistanıdır. Günlük sorularınızı İslami perspektife uygun, ahlaki yorumlar yaparak cevaplandırır. 
+                İslami konulardaki bilgi ve yorum sorularınızı ise Kuran-ı-Kerim'den ayetler, sahih hadisler ve İslam fıkhı ile destekleyerek detaylı cevaplar verir. Aynı zamanda sizlere her gün güvenilir kaynaklardan yeni Hadisler, Sureler, hikayeler ve daha fazlasını sunar ve her zaman kaynaklarını belirtir.
+            </p>
+
+            <div class="highlights">
+              <span class="chip">
+                <span class="chip-dot"></span>
+                Kur’an &amp; sahih hadis referanslı cevaplar
+              </span>
+              <span class="chip">
+                <span class="chip-dot"></span>
+                Namaz vakitleri &amp; kıble yönü
+              </span>
+              <span class="chip">
+                <span class="chip-dot"></span>
+                Kişiselleştirilebilir üslup &amp; tema
+              </span>
+            </div>
+
+            <div class="cta-row" aria-label="Uygulamayı indir">
+              <a
+                class="store-button"
+                href="https://apps.apple.com/tr/app/m%25C3%25BCmin-ai/id6748532925"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="store-icon"></div>
+                <div class="store-text">
+                  <span class="store-label">İndir</span>
+                  <span class="store-name">App Store’dan</span>
+                </div>
+              </a>
+
+              <a
+                class="store-button"
+                href="https://play.google.com/store/apps/details?id=com.anonymous.MuminAI&pcampaignid=web_share"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="store-icon" style="font-size: 20px;">▶</div>
+                <div class="store-text">
+                  <span class="store-label">İndir</span>
+                  <span class="store-name">Google Play'den</span>
+                </div>
+              </a>
+            </div>
+
+            <p class="secondary-note">
+              Ücretsiz indirip hemen denemeye başlayın. Uygulama içi satın alımlar ve
+              gelişmiş özellikler mevcuttur.
+            </p>
+
+            <div class="rating-row">
+              <span class="stars">★ ★ ★ ★ ★</span>
+              <span>4.7 / 5.0 • App Store kullanıcı puanı</span>
+              <span class="divider-dot"></span>
+              <span>iOS 15.1+ ve Android için</span>
+            </div>
+          </div>
         </div>
-    </div>
+
+        <footer class="footer">
+          <span>© 2025 Tarık Sağbaş. Tüm hakları saklıdır.</span>
+          <div class="footer-links">
+            <a href="/muminai-website/privacy-policy.html" target="_blank" rel="noopener noreferrer">
+              Gizlilik Politikası
+            </a>
+            <a href="/muminai-website/user-agreement.html" target="_blank" rel="noopener noreferrer">
+              Kullanıcı Sözleşmesi
+            </a>
+            <a href="/muminai-website/support.html" target="_blank" rel="noopener noreferrer">
+              Destek
+            </a>
+          </div>
+        </footer>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
+
