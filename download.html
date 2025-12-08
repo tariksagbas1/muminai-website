@@ -28,10 +28,14 @@
       width: 100%;
       max-width: 500px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .icon-wrapper {
-      margin-bottom: 32px;
+      margin-bottom: 16px;
       animation: float 3s ease-in-out infinite;
     }
 
@@ -61,11 +65,20 @@
       font-weight: 400;
     }
 
+    .app-size {
+      font-size: 13px;
+      opacity: 0.75;
+      margin-bottom: 8px;
+      font-weight: 700;
+      margin-top: -5px;
+    }
+
     .download-buttons {
       display: flex;
       flex-direction: column;
       gap: 16px;
       margin-bottom: 32px;
+      width: 80%;
     }
 
     .download-button {
@@ -103,6 +116,7 @@
       justify-content: center;
       font-size: 24px;
       font-weight: 700;
+      transform: scale(1.5);
     }
 
     .download-button .text {
@@ -153,6 +167,11 @@
         margin-bottom: 40px;
       }
 
+      .app-size {
+        font-size: 12px;
+        margin-bottom: 8px;
+      }
+
       .icon-wrapper img {
         width: 100px;
         height: 100px;
@@ -195,6 +214,7 @@
       <img src="icon.png" alt="Mümin AI" style="color: '#fff9e4'"/>
     </div>
 
+    <p class="app-size">29MB</p>
     <h1 class="app-name">Mümin AI</h1>
     <p class="app-tagline">Müminler İçin Yapay Zeka Desteği</p>
 
@@ -206,7 +226,7 @@
         rel="noopener noreferrer"
         aria-label="App Store'dan İndir"
       >
-        <div class="icon"></div>
+        <div class="icon" ></div>
         <div class="text">
           <span class="label">İndir</span>
           <span class="store-name">App Store'dan</span>
