@@ -1030,7 +1030,7 @@
         <footer class="footer">
           <span>© 2025 Tarık Sağbaş. Tüm hakları saklıdır.</span>
           <div class="footer-links">
-            <a href="privacy-policy.html" download target="_blank" rel="noopener noreferrer">
+            <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">
               Gizlilik Politikası
             </a>
             <a href="user-agreement.html" target="_blank" rel="noopener noreferrer">
@@ -1044,6 +1044,23 @@
       </div>
     </section>
   </main>
+  <script type="module">
+    import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+    const supabaseUrl = "https://ewxkgalpibbumalylmma.supabase.co";
+    const supabaseAnonKey =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV3eGtnYWxwaWJidW1hbHlsbW1hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk5ODY2MzUsImV4cCI6MjA2NTU2MjYzNX0.VVg1x3-m1bsuU2RpJgnGqUqACZ7FVdisdctjobGQ680";
+
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+    (async () => {
+      try {
+        await supabase.from("website_visits").insert({ action: "open", page: "index" });
+      } catch {
+        // no-op
+      }
+    })();
+  </script>
 </body>
 </html>
 
