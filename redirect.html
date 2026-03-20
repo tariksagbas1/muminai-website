@@ -210,52 +210,14 @@
 </head>
 <body>
   <div class="container">
-    <div class="icon-wrapper">
-      <img src="icon.png" alt="Mümin AI" style="color: '#fff9e4'"/>
-    </div>
-
-    <p class="app-size">29MB</p>
-    <h1 class="app-name">Mümin AI</h1>
-    <p class="app-tagline">Müminler İçin Yapay Zeka Desteği</p>
-
-    <div class="download-buttons">
-      <a 
-        href="https://apps.apple.com/tr/app/m%25C3%25BCmin-ai/id6748532925" 
-        class="download-button"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="App Store'dan İndir"
-      >
-        <div class="icon" ></div>
-        <div class="text">
-          <span class="label">İndir</span>
-          <span class="store-name">App Store'dan</span>
-        </div>
-      </a>
-
-      <a 
-        href="https://play.google.com/store/apps/details?id=com.anonymous.MuminAI&pcampaignid=web_share" 
-        class="download-button"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Google Play'den İndir"
-      >
-        <div class="icon">▶</div>
-        <div class="text">
-          <span class="label">İndir</span>
-          <span class="store-name">Google Play'den</span>
-        </div>
-      </a>
-    </div>
-
-    <div class="footer">
-      <a href="privacy-policy.html" download>Gizlilik</a> •
-      <a href="user-agreement.html">Kullanım</a> •
-      <a href="support.html">Destek</a>
-    </div>
+    <p style="opacity: 0.9;">Yönlendiriliyor...</p>
   </div>
   <script type="module">
     import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+    const ua = (navigator.userAgent || "").toLowerCase();
+    const isAndroid = ua.includes("android");
+    const isIOS = /iphone|ipad|ipod/i.test(ua);
 
     const supabaseUrl = "https://ewxkgalpibbumalylmma.supabase.co";
     const supabaseAnonKey =
@@ -263,49 +225,37 @@
 
     const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-    async function logVisit({ action, page }) {
-      try {
-        await supabase.from("website_visits").insert({ action, page });
-      } catch {
-        // no-op
-      }
+    // Mobile -> respective store; non-mobile -> show both via download.html
+    let targetUrl = "download.html";
+
+    if (isAndroid) {
+      targetUrl =
+        "https://play.google.com/store/apps/details?id=com.anonymous.MuminAI&pcampaignid=web_share";
+    } else if (isIOS) {
+      targetUrl =
+        "https://apps.apple.com/tr/app/m%25C3%25BCmin-ai/id6748532925";
     }
 
-    logVisit({ action: "open", page: "download" });
+    // Try to log the redirect page open event, but always redirect.
+    let didRedirect = false;
+    const redirect = () => {
+      if (didRedirect) return;
+      didRedirect = true;
+      window.location.replace(targetUrl);
+    };
 
-    const appleLink = document.querySelector('a.download-button[href*="apps.apple.com"]');
-    const androidLink = document.querySelector('a.download-button[href*="play.google.com"]');
+    supabase
+      .from("website_visits")
+      .insert({ action: "open", page: "redirect" })
+      .then(() => redirect())
+      .catch(() => redirect());
 
-    // Show only the relevant store button per device:
-    // - Android: Google Play only
-    // - Other mobile: App Store only
-    // - Desktop (not mobile): both
-    const ua = (navigator.userAgent || "").toLowerCase();
-    const isAndroid = ua.includes("android");
-    const isMobile = /mobi|android|iphone|ipad|ipod/i.test(ua);
-
-    const showApple = !isMobile || !isAndroid;
-    const showGoogle = !isMobile || isAndroid;
-
-    if (appleLink) appleLink.style.display = showApple ? "" : "none";
-    if (androidLink) androidLink.style.display = showGoogle ? "" : "none";
-
-    appleLink?.addEventListener(
-      "click",
-      () => {
-        logVisit({ action: "click", page: "apple" });
-      },
-      { passive: true }
-    );
-
-    androidLink?.addEventListener(
-      "click",
-      () => {
-        logVisit({ action: "click", page: "android" });
-      },
-      { passive: true }
-    );
+    // Fallback: even if Supabase is slow, redirect shortly after.
+    setTimeout(redirect, 800);
   </script>
+  <noscript>
+    <a href="download.html" style="color: #ffffff;">Uygulamayı indir</a>
+  </noscript>
 </body>
 </html>
 
