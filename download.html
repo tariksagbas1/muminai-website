@@ -276,20 +276,6 @@
     const appleLink = document.querySelector('a.download-button[href*="apps.apple.com"]');
     const androidLink = document.querySelector('a.download-button[href*="play.google.com"]');
 
-    // Show only the relevant store button per device:
-    // - Android: Google Play only
-    // - Other mobile: App Store only
-    // - Desktop (not mobile): both
-    const ua = (navigator.userAgent || "").toLowerCase();
-    const isAndroid = ua.includes("android");
-    const isMobile = /mobi|android|iphone|ipad|ipod/i.test(ua);
-
-    const showApple = !isMobile || !isAndroid;
-    const showGoogle = !isMobile || isAndroid;
-
-    if (appleLink) appleLink.style.display = showApple ? "" : "none";
-    if (androidLink) androidLink.style.display = showGoogle ? "" : "none";
-
     appleLink?.addEventListener(
       "click",
       () => {
