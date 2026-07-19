@@ -808,38 +808,6 @@ table.times-table {
   color: var(--forest);
 }
 
-.seo-year {
-  margin: 0 0 24px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-  overflow: hidden;
-}
-
-.seo-year > summary {
-  cursor: pointer;
-  list-style: none;
-  padding: 14px 16px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--forest-deep);
-  background: var(--surface-soft);
-  border-bottom: 1px solid transparent;
-}
-
-.seo-year > summary::-webkit-details-marker {
-  display: none;
-}
-
-.seo-year[open] > summary {
-  border-bottom-color: var(--line);
-}
-
-.seo-year .table-wrap {
-  max-height: 480px;
-  overflow: auto;
-}
-
 .hidden {
   display: none !important;
 }

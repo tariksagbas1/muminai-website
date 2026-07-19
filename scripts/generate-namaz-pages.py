@@ -166,37 +166,6 @@ def resolve_schedule(
     return schedules.get((city, district)) or schedules.get((city, city)) or {}
 
 
-def format_short_tr(day_str: str) -> str:
-    d = date.fromisoformat(day_str)
-    return f"{d.day} {MONTHS_TR[d.month - 1]}"
-
-
-def year_table_html(place_title: str, schedule: dict[str, dict]) -> str:
-    if not schedule:
-        return ""
-    rows = []
-    for day in sorted(schedule.keys()):
-        t = schedule[day]
-        cells = "".join(f"<td>{escape(t[k])}</td>" for k, _ in PRAYERS)
-        rows.append(
-            f'<tr><td><time datetime="{escape(day)}">{escape(format_short_tr(day))} {escape(day[:4])}</time></td>{cells}</tr>'
-        )
-    head = "".join(f"<th>{escape(label)}</th>" for _, label in PRAYERS)
-    return f"""
-      <details class="seo-year">
-        <summary>{escape(place_title)} — tüm namaz vakitleri ({len(schedule)} gün)</summary>
-        <div class="table-wrap">
-          <table class="times-table">
-            <thead><tr><th>Tarih</th>{head}</tr></thead>
-            <tbody>
-              {''.join(rows)}
-            </tbody>
-          </table>
-        </div>
-      </details>
-"""
-
-
 def times_cards_html(times: dict | None) -> str:
     if not times:
         return '<div id="today-times" class="times-grid hidden"></div>'
@@ -276,7 +245,6 @@ def page_html(
     date_line = format_long_tr_fixed(day)
     times_html = times_cards_html(times)
     districts_html = district_list_html(city, active_slug)
-    year_html = year_table_html(place_title, schedule)
     prayer_json = json.dumps(schedule, ensure_ascii=False, separators=(",", ":"))
 
     ld = {
@@ -394,8 +362,6 @@ def page_html(
         </div>
         <div id="range-body"></div>
       </div>
-
-      {year_html}
 
       <p class="section-label">İlçeler</p>
       <div id="district-list" class="city-grid">
