@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Yönlendiriliyor…</title>
+  <script>
+    const q = new URLSearchParams(location.search);
+    const city = q.get("city");
+    const district = q.get("district");
+    if (city && district && city !== district) {
+      location.replace(`/namaz-vakitleri/${encodeURIComponent(city)}/${encodeURIComponent(district)}/`);
+    } else if (city) {
+      location.replace(`/namaz-vakitleri/${encodeURIComponent(city)}/`);
+    } else {
+      location.replace("/namaz-vakitleri/");
+    }
+  </script>
+</head>
+<body><p><a href="/namaz-vakitleri/">Namaz vakitleri</a></p></body>
+</html>

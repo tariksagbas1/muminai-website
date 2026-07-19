@@ -1,0 +1,12 @@
+# Generated namaz location pages (built in CI — do not commit)
+namaz-vakitleri/*/
+!namaz-vakitleri/css/
+!namaz-vakitleri/js/
+!namaz-vakitleri/data/
+
+# Local data / OS
+prayer-times.db
+.DS_Store
+_site/
+__pycache__/
+*.pyc

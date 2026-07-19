@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Namaz Vakitleri – Türkiye Ezan Saatleri | Mümin AI</title>
+  <meta
+    name="description"
+    content="Türkiye'nin tüm illeri ve ilçeleri için namaz vakitleri. Şehrinizi veya ilçenizi arayın, bugünün ezan saatlerini görün."
+  />
+  <meta property="og:title" content="Namaz Vakitleri – Türkiye Ezan Saatleri | Mümin AI" />
+  <meta
+    property="og:description"
+    content="Türkiye geneli namaz vakitleri ve ezan saatleri. İl ve ilçe arayarak bugünün vakitlerini görün."
+  />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://muminai.info/namaz-vakitleri/" />
+  <link rel="icon" type="image/png" href="../favicon.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <main class="page">
+    <section class="shell">
+      <header class="top-bar">
+        <a class="brand" href="../index.html">
+          <div class="brand-mark">
+            <img src="../icon_transparent.png" alt="Mümin AI" />
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">Mümin AI</span>
+            <span class="brand-tag">Namaz Vakitleri</span>
+          </div>
+        </a>
+        <a class="pill" href="../download.html">Uygulamayı indir</a>
+      </header>
+
+      <div class="hero-block">
+        <div class="eyebrow">Türkiye · Ezan saatleri</div>
+        <h1 class="headline">
+          <span class="accent">Namaz vakitleri</span> her yerde
+        </h1>
+        <p class="sub">
+          İl veya ilçe adını yazın; namaz vakitlerini anında görün.
+        </p>
+      </div>
+
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+          <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <input
+          id="search-input"
+          class="search-input"
+          type="search"
+          placeholder="Örn. Edremit, Beykoz, Erzurum, Ereğli…"
+          autocomplete="off"
+          enterkeyhint="search"
+          aria-label="Şehir veya ilçe ara"
+        />
+        <div id="search-results" class="search-results" role="listbox"></div>
+      </div>
+
+      <p class="section-label">81 il</p>
+      <div id="state" class="state hidden" aria-live="polite"></div>
+      <div id="city-grid" class="city-grid"></div>
+
+      <div class="app-cta" style="margin-top: 28px">
+        <div>
+          <h3>Mümin AI uygulamasında</h3>
+          <p>Namaz vakitleri, kıble yönü ve İslami sorularınız için yapay zeka asistanı.</p>
+        </div>
+        <div class="cta-buttons">
+          <a class="cta-btn" href="https://apps.apple.com/tr/app/m%25C3%25BCmin-ai/id6748532925">App Store</a>
+          <a class="cta-btn" href="https://play.google.com/store/apps/details?id=com.anonymous.MuminAI">Google Play</a>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <span>© 2026 Tarık Sağbaş</span>
+        <div class="footer-links">
+          <a href="../index.html">Ana sayfa</a>
+          <a href="../download.html">İndir</a>
+          <a href="../privacy-policy.html">Gizlilik</a>
+          <a href="../support.html">Destek</a>
+        </div>
+      </footer>
+    </section>
+  </main>
+  <script src="js/app.js"></script>
+  <script>
+    MuminPrayer.initHub();
+  </script>
+</body>
+</html>

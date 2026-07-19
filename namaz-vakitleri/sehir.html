@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Yönlendiriliyor…</title>
+  <script>
+    const city = new URLSearchParams(location.search).get("city");
+    location.replace(city ? `/namaz-vakitleri/${encodeURIComponent(city)}/` : "/namaz-vakitleri/");
+  </script>
+</head>
+<body><p><a href="/namaz-vakitleri/">Namaz vakitleri</a></p></body>
+</html>
