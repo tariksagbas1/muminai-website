@@ -808,6 +808,11 @@ table.times-table {
   color: var(--forest);
 }
 
+/* Legacy generated pages — removed from build script */
+.seo-year {
+  display: none !important;
+}
+
 .hidden {
   display: none !important;
 }

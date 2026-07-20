@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Primary sitemap for all public pages.
+Sitemap: https://muminai.info/sitemap.xml
