@@ -198,18 +198,21 @@ a:hover {
   color: var(--forest);
 }
 
-.location-bar .place-pick {
-  font-size: 13px;
-  padding: 4px 10px;
-  min-height: 0;
-  line-height: 1.3;
-  border-radius: 8px;
-  gap: 6px;
+.breadcrumb .crumb-link,
+.breadcrumb .crumb-current {
+  color: var(--ink);
+  font-size: inherit;
+  font-weight: 500;
+  padding: 8px 4px;
 }
 
-.location-bar .place-pick .place-pick-chevron {
-  width: 14px;
-  height: 14px;
+.breadcrumb .crumb-link:hover {
+  color: var(--forest);
+}
+
+.breadcrumb .crumb-current {
+  color: var(--forest-deep);
+  font-weight: 600;
 }
 
 .hero-block {

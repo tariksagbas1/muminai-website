@@ -68,13 +68,6 @@ WEEKDAYS_TR = [
     "Cumartesi",
 ]
 
-CHEVRON = (
-    '<svg class="place-pick-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true">'
-    '<path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" '
-    'stroke-linecap="round" stroke-linejoin="round"/></svg>'
-)
-
-
 def turkey_today() -> date:
     return datetime.now(timezone(timedelta(hours=3))).date()
 
@@ -225,7 +218,11 @@ def page_html(
         cta_title = "Mümin AI ile yanınızda"
         cta_body = "Kıble yönü, namaz vakitleri ve kaynaklı İslami cevaplar tek uygulamada."
         active_slug = city_slug
-        district_label = "İlçe seç"
+        crumb_city = (
+            f'<span class="crumb-current" id="crumb-city" aria-current="page">'
+            f"{escape(city_name)}</span>"
+        )
+        crumb_district = ""
     else:
         title = f"{district_name} Namaz Vakti – {city_name} | Mümin AI"
         description = (
@@ -240,7 +237,15 @@ def page_html(
             "kıbleyi bulun ve sorunlarınıza kaynaklı cevaplar alın."
         )
         active_slug = district_slug
-        district_label = district_name
+        crumb_city = (
+            f'<a href="{escape(city_url(city_slug))}" class="crumb-link" id="crumb-city">'
+            f"{escape(city_name)}</a>"
+        )
+        crumb_district = (
+            f'\n          <span class="sep">/</span>\n'
+            f'          <span class="crumb-current" id="crumb-district" aria-current="page">'
+            f"{escape(district_name)}</span>"
+        )
 
     date_line = format_long_tr_fixed(day)
     times_html = times_cards_html(times)
@@ -311,16 +316,7 @@ def page_html(
         <div class="location-bar-row">
           <a href="{BASE}/" class="crumb-home">Namaz vakitleri</a>
           <span class="sep">/</span>
-          <button type="button" class="place-pick soft" id="crumb-city" data-pick="city" aria-haspopup="listbox" aria-expanded="false"><span>{escape(city_name)}</span>{CHEVRON}</button>
-          <span class="sep">/</span>
-          <button type="button" class="place-pick soft" id="crumb-district" data-pick="district" aria-haspopup="listbox" aria-expanded="false"><span>{escape(district_label)}</span>{CHEVRON}</button>
-        </div>
-        <div id="place-picker" class="place-picker" role="dialog" aria-label="Konum seç">
-          <div class="place-picker-head">
-            <input type="search" id="place-picker-search" placeholder="Ara…" autocomplete="off" />
-            <button type="button" class="place-picker-close" id="place-picker-close" aria-label="Kapat">×</button>
-          </div>
-          <div id="place-picker-list" class="place-picker-list"></div>
+          {crumb_city}{crumb_district}
         </div>
       </nav>
 

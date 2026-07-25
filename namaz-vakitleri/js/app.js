@@ -377,8 +377,6 @@ function bindRangeTabs(tabsEl, onChange) {
   });
 }
 
-const CHEVRON_SVG = `<svg class="place-pick-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-
 function cityHref(citySlug) {
   return `${BASE}/${encodeURIComponent(citySlug)}/`;
 }
@@ -386,106 +384,6 @@ function cityHref(citySlug) {
 function districtHref(citySlug, districtSlug) {
   if (districtSlug === citySlug) return cityHref(citySlug);
   return `${BASE}/${encodeURIComponent(citySlug)}/${encodeURIComponent(districtSlug)}/`;
-}
-
-function setupPlacePicker({ mode, citySlug, districtSlug, cityMeta }) {
-  const picker = document.getElementById("place-picker");
-  const listEl = document.getElementById("place-picker-list");
-  const searchEl = document.getElementById("place-picker-search");
-  const closeBtn = document.getElementById("place-picker-close");
-  if (!picker || !listEl || !locationsCache) return;
-
-  let activeType = null;
-  let openTriggers = [];
-
-  function closePicker() {
-    picker.classList.remove("open");
-    openTriggers.forEach((el) => el?.setAttribute("aria-expanded", "false"));
-    openTriggers = [];
-    activeType = null;
-    if (searchEl) searchEl.value = "";
-  }
-
-  function renderList(filter = "") {
-    const q = normalizeQuery(filter);
-    let items = [];
-
-    if (activeType === "city") {
-      items = locationsCache.cities.map((c) => ({
-        label: c.name,
-        href: cityHref(c.slug),
-        active: c.slug === citySlug,
-        search: normalizeQuery(`${c.name} ${c.slug}`),
-      }));
-    } else if (activeType === "district" && cityMeta) {
-      items = cityMeta.districts.map((d) => ({
-        label: d.merkez ? `${d.name} (Merkez)` : d.name,
-        href: districtHref(citySlug, d.slug),
-        active: d.slug === (mode === "city" ? citySlug : districtSlug),
-        search: normalizeQuery(`${d.name} ${d.slug}`),
-      }));
-    }
-
-    if (q) items = items.filter((it) => it.search.includes(q));
-
-    if (!items.length) {
-      listEl.innerHTML = `<div class="place-picker-empty">Sonuç bulunamadı</div>`;
-      return;
-    }
-
-    listEl.innerHTML = items
-      .map(
-        (it) => `
-      <button type="button" class="place-picker-item${it.active ? " active" : ""}" data-href="${it.href}">
-        ${it.label}
-      </button>`
-      )
-      .join("");
-  }
-
-  function openPicker(type, trigger) {
-    if (activeType === type && picker.classList.contains("open")) {
-      closePicker();
-      return;
-    }
-    activeType = type;
-    openTriggers.forEach((el) => el?.setAttribute("aria-expanded", "false"));
-    openTriggers = [trigger];
-    trigger?.setAttribute("aria-expanded", "true");
-    picker.classList.add("open");
-    renderList("");
-    if (searchEl) {
-      searchEl.placeholder = type === "city" ? "Şehir ara…" : "İlçe ara…";
-      searchEl.focus();
-    }
-  }
-
-  document.querySelectorAll("[data-pick]").forEach((el) => {
-    el.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      openPicker(el.dataset.pick, el);
-    });
-  });
-
-  searchEl?.addEventListener("input", () => renderList(searchEl.value));
-  closeBtn?.addEventListener("click", closePicker);
-
-  listEl.addEventListener("click", (e) => {
-    const item = e.target.closest("[data-href]");
-    if (!item) return;
-    window.location.href = item.dataset.href;
-  });
-
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest(".location-bar") && !e.target.closest("[data-pick]")) {
-      closePicker();
-    }
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closePicker();
-  });
 }
 
 async function initLocationPage(options = {}) {
@@ -565,19 +463,6 @@ async function initLocationPage(options = {}) {
         ? `${displayCity} için bugünün namaz vakitleri. Haftalık, aylık ve yıllık vakitleri görebilirsiniz.`
         : `${displayDistrict} (${displayCity}) için namaz vakitleri.`;
   }
-
-  const crumbCity = document.getElementById("crumb-city");
-  const crumbDistrict = document.getElementById("crumb-district");
-  if (crumbCity) {
-    crumbCity.innerHTML = `<span>${displayCity}</span>${CHEVRON_SVG}`;
-  }
-  if (crumbDistrict) {
-    const districtLabel =
-      mode === "district" ? displayDistrict : "İlçe seç";
-    crumbDistrict.innerHTML = `<span>${districtLabel}</span>${CHEVRON_SVG}`;
-  }
-
-  setupPlacePicker({ mode, citySlug, districtSlug, cityMeta });
 
   const dateParam = (qs("date") || "").trim();
   const anchorDay = clampDate(
